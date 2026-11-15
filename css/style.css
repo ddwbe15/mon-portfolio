@@ -1,0 +1,139 @@
+/* =====================================================
+   STYLE DU PORTFOLIO – noir & blanc
+   Sommaire : 1.Variables 2.Base 3.Navbar 4.Hero 6.Compétences
+              7.Cartes 8.Parcours 9.Veille 10.Formulaire
+              11.Animations 12.Responsive
+   ===================================================== */
+
+/* 1. VARIABLES – change les couleurs/police ici uniquement */
+:root {
+  --bg: #fff;
+  --fg: #000;
+  --grey: #6b6b6b;      /* texte secondaire */
+  --line: #e2e2e2;      /* bordures légères */
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --radius: 4px;
+  /* Violet d'accent : #7c3aed garde un bon contraste (≈5,7:1) avec le blanc.
+     Pour un violet plus clair/foncé, modifie ces 3 lignes uniquement. */
+  --accent: #7c3aed;     /* boutons, liens, éléments actifs */
+  --accent-light: #a78bfa; /* dégradés, décorations */
+  --accent-soft: #f3edff;  /* fonds très clairs */
+}
+
+/* 2. BASE */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font-family: var(--font); background: var(--bg); color: var(--fg); line-height: 1.7; }
+a { color: inherit; }
+::selection { background: var(--accent); color: #fff; } /* texte sélectionné */
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; } /* accessibilité clavier */
+.section { max-width: 960px; margin: 0 auto; padding: 110px 24px 40px; }
+h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 32px; letter-spacing: -0.02em; }
+h2::after { content: ''; display: block; width: 56px; height: 5px; margin-top: 10px; background: var(--accent); border-radius: 3px; }
+.accent { color: var(--accent); }
+h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.lead { color: var(--grey); margin-bottom: 24px; max-width: 60ch; }
+.sub { margin: 32px 0 8px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 28px; }
+
+/* Barre de progression en haut de page */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-light)); z-index: 200; }
+
+/* 3. NAVBAR */
+.nav { position: fixed; top: 0; width: 100%; z-index: 100; display: flex; justify-content: space-between;
+  align-items: center; padding: 16px 32px; background: rgba(255,255,255,.9); backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent; transition: border-color .3s; }
+.nav.scrolled { border-color: var(--line); }
+.nav__logo { font-weight: 700; font-size: 1.4rem; text-decoration: none; }
+.nav__list { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav__list a { text-decoration: none; font-weight: 500; position: relative; padding: 4px 0; }
+/* Soulignement animé + onglet actif (classe .active ajoutée par le JS) */
+.nav__list a:not(.nav__cta)::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
+  background: var(--accent); transition: width .3s; }
+.nav__list a:hover::after, .nav__list a.active::after { width: 100%; }
+.nav__cta { background: var(--accent); color: var(--bg); padding: 8px 18px !important; border-radius: var(--radius); }
+.nav__cta:hover { opacity: .8; }
+.nav__burger { display: none; background: none; border: 0; cursor: pointer; width: 32px; height: 24px; position: relative; }
+.nav__burger span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--fg); transition: .3s; }
+.nav__burger span:first-child { top: 6px; } .nav__burger span:last-child { top: 16px; }
+.nav__burger[aria-expanded="true"] span:first-child { top: 11px; transform: rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:last-child { top: 11px; transform: rotate(-45deg); }
+
+/* 4. HERO – animation d'entrée du nom, ligne par ligne */
+.hero { background: radial-gradient(ellipse at 85% 20%, var(--accent-soft), transparent 55%);
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 8vw 60px; }
+.hero__intro { color: var(--grey); font-size: 1.2rem; animation: rise .8s .1s both; }
+.hero__title { font-size: clamp(4rem, 14vw, 11rem); line-height: .92; letter-spacing: -0.05em; margin: 12px 0 28px;
+  animation: rise 1s .3s both; }
+.hero__role { font-size: clamp(1.1rem, 2.5vw, 1.5rem); animation: rise .8s .6s both; }
+.caret { animation: blink 1s steps(1) infinite; }
+.hero__actions { display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap; animation: rise .8s .8s both; }
+
+/* Boutons */
+.btn { display: inline-block; padding: 14px 28px; border: 2px solid var(--accent); border-radius: var(--radius);
+  font: inherit; font-weight: 500; text-decoration: none; cursor: pointer; transition: transform .2s, background .2s, color .2s; }
+.btn:hover { transform: translateY(-3px); }
+.btn--solid { background: var(--accent); color: #fff; }
+.btn--solid:hover { box-shadow: 0 8px 20px rgba(124,58,237,.35); }
+.btn--line { background: transparent; color: var(--accent); }
+.btn--line:hover { background: var(--accent); color: #fff; }
+
+/* 6. COMPÉTENCES */
+.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; }
+.skill span { font-weight: 500; }
+.bar { height: 6px; background: var(--line); margin-top: 8px; border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-light)); transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+
+/* 7. CARTES PROJETS – inversion noir/blanc au survol */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.card { border: 2px solid var(--fg); padding: 28px; border-radius: var(--radius); transition: background .3s, color .3s, transform .3s; }
+.card:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-6px); box-shadow: 0 14px 30px rgba(124,58,237,.3); }
+.card p { margin-bottom: 12px; }
+.card__tags { color: var(--grey); font-size: .9rem; }
+.card:hover .card__tags { color: #e9ddff; }
+.card__link { font-weight: 700; color: var(--accent); }
+.card:hover .card__link { color: #fff; }
+
+/* 8. PARCOURS */
+.timeline { list-style: none; border-left: 2px solid var(--accent-light); padding-left: 28px; }
+.timeline li { position: relative; margin-bottom: 28px; display: flex; flex-direction: column; }
+.timeline li::before { content: ''; position: absolute; left: -36px; top: 8px; width: 14px; height: 14px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px var(--accent-soft); }
+.timeline span { color: var(--grey); }
+
+/* 9. VEILLE */
+.box { border: 1px solid var(--line); border-top: 4px solid var(--accent); background: var(--accent-soft); padding: 24px; border-radius: var(--radius); }
+.links { list-style: none; }
+.links li { border-bottom: 1px solid var(--line); }
+.links a { display: block; padding: 14px 0; text-decoration: none; font-weight: 500; transition: padding-left .3s; }
+.links a:hover { padding-left: 14px; color: var(--accent); }
+
+/* 10. FORMULAIRE */
+.form { max-width: 560px; display: grid; gap: 20px; }
+.form label { display: grid; gap: 6px; font-weight: 500; }
+.form input, .form textarea { font: inherit; padding: 14px; border: 2px solid var(--line); border-radius: var(--radius);
+  background: var(--bg); transition: border-color .2s; }
+.form input:focus, .form textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); outline: none; }
+.form input.invalid, .form textarea.invalid { border-color: #000; background: #f2f2f2; } /* erreur : noir, distinct du violet */
+.hp { position: absolute; left: -9999px; }             /* champ anti-spam caché */
+.form__status { min-height: 1.5em; font-weight: 500; }
+.footer { text-align: center; padding: 60px 24px; color: var(--grey); }
+
+/* 11. ANIMATIONS */
+@keyframes rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes blink { 50% { opacity: 0; } }
+/* Apparition au scroll : la classe .visible est ajoutée par js/main.js */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s, transform .8s; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {            /* respect des préférences utilisateur */
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* 12. RESPONSIVE (mobile) */
+@media (max-width: 800px) {
+  .nav__burger { display: block; }
+  .nav__list { position: fixed; top: 60px; left: 0; right: 0; flex-direction: column; background: var(--bg);
+    padding: 24px; gap: 20px; border-bottom: 1px solid var(--line); transform: translateY(-120%); transition: transform .4s; }
+  .nav__list.open { transform: none; }
+  .two-col, .skills { grid-template-columns: 1fr; }
+}

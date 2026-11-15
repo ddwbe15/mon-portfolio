@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Douho William – Portfolio BTS SIO SLAM</title>
+  <meta name="description" content="Portfolio de Douho William, étudiant en BTS SIO option SLAM.">
+  <!-- Police : Space Grotesk (modifiable ici ET dans css/style.css, variable --font) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Barre de progression de lecture (pilotée par js/main.js) -->
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAVBAR ============
+     Pour ajouter un onglet : copie un <li>, change href="#id" et le texte,
+     puis crée une <section id="id"> plus bas. -->
+<header class="nav" id="nav">
+  <a href="#accueil" class="nav__logo">DW<span class="accent">.</span></a>
+  <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+  <nav>
+    <ul class="nav__list" id="menu">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#veille">Veille</a></li>
+      <li><a href="#contact" class="nav__cta">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ ACCUEIL (hero) ============ -->
+<section class="hero" id="accueil">
+  <p class="hero__intro">Bonjour, je suis</p>
+  <h1 class="hero__title">Douho<br><span class="accent">William</span></h1>
+  <!-- Le texte tapé est défini dans js/main.js (tableau ROLES) -->
+  <p class="hero__role">Étudiant BTS SIO SLAM — <span id="typed"></span><span class="caret">|</span></p>
+  <div class="hero__actions">
+    <a href="#parcours" class="btn btn--solid">Voir mon parcours</a>
+    <a href="#contact" class="btn btn--line">Me contacter</a>
+  </div>
+</section>
+
+<!-- ============ À PROPOS ============ -->
+<section class="section reveal" id="apropos">
+  <h2>À propos</h2>
+  <div class="two-col">
+    <p>Je suis en BTS Services Informatiques aux Organisations, option Solutions Logicielles et Applications Métiers. Je conçois des applications, je les teste et je les fais évoluer.</p>
+    <p>Je cherche une alternance ou un stage pour mettre en pratique mes compétences en développement. <!-- ✏️ Personnalise ce texte --></p>
+  </div>
+  <!-- Pour afficher ton CV : place le fichier dans assets/docs/ -->
+  <a href="assets/docs/William DOUHO CV pdf.pdf" class="btn btn--line" download>Télécharger mon CV</a>
+</section>
+
+<!-- ============ COMPÉTENCES ============
+     data-level = niveau en % (la barre s'anime à l'affichage) -->
+<section class="section reveal" id="competences">
+  <h2>Compétences</h2>
+  <div class="skills">
+    <div class="skill"><span>HTML / CSS / Bootstrap</span><div class="bar"><i data-level="85"></i></div></div>
+    <div class="skill"><span>JavaScript</span><div class="bar"><i data-level="70"></i></div></div>
+    <div class="skill"><span>PHP / MySQL</span><div class="bar"><i data-level="70"></i></div></div>
+    <div class="skill"><span>Python</span><div class="bar"><i data-level="60"></i></div></div>
+    <div class="skill"><span>Git / GitHub</span><div class="bar"><i data-level="65"></i></div></div>
+    <div class="skill"><span>Bases de données (SQL)</span><div class="bar"><i data-level="75"></i></div></div>
+  </div>
+</section>
+
+<!-- ============ PROJETS ============
+     Un projet = un bloc <article class="card">. Copie-le pour en ajouter. -->
+<section class="section reveal" id="projets">
+  <h2>Projets</h2>
+  <div class="cards">
+    <article class="card">
+      <h3>Nom du projet 1</h3>
+      <p>Décris en 2 phrases le contexte, ton rôle et le résultat.</p>
+      <p class="card__tags">PHP · MySQL · Bootstrap</p>
+      <a href="#" class="card__link">Voir le code</a>
+    </article>
+    <article class="card">
+      <h3>Nom du projet 2</h3>
+      <p>Décris en 2 phrases le contexte, ton rôle et le résultat.</p>
+      <p class="card__tags">Java · SQLite</p>
+      <a href="#" class="card__link">Voir le code</a>
+    </article>
+    <article class="card">
+      <h3>Nom du projet 3</h3>
+      <p>Décris en 2 phrases le contexte, ton rôle et le résultat.</p>
+      <p class="card__tags">JavaScript · API REST</p>
+      <a href="#" class="card__link">Voir le code</a>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PARCOURS (frise chronologique) ============ -->
+<section class="section reveal" id="parcours">
+  <h2>Parcours</h2>
+  <ol class="timeline">
+    <li><strong>2025 – 2027</strong><span>BTS SIO option SLAM — Lycée Gustave Flaubert, Rouen</span></li>
+    <li><strong>Stage</strong><span>DIGIHMB France, Creation de site web, avec des CMS</span></li>
+    <li><strong>2022 – 2024</strong><span>BTS IDA  — à PIGIER Côte d'Ivoire, Abidjan</span></li>
+    <li><strong>Stage</strong><span>SPI Holding Côte d'Ivoire, Creation de site web, HTML/CSS/JS/PHP</span></li>
+    <li><strong>2022</strong><span>Baccalauréat  — scientifique</span></li>
+  </ol>
+  <a href="#contact" class="btn btn--line">Me contacter</a>
+</section>
+
+<!-- ============ VEILLE TECHNOLOGIQUE ============ -->
+<section class="section reveal" id="veille">
+  <h2>Veille technologique</h2>
+  <p class="lead">Ma veille me permet de suivre les innovations architecturales apportées par Svelte et SolidJS(Framework JavaScript) et les opposer à l'hégémonie de ReactJS.</p>
+  <div class="two-col">
+    <div class="box">
+      <h3>Sujet</h3>
+      <p>Svelte et Solid peuvent-ils remettre en cause la place de React ?</p>
+    </div>
+    <div class="box">
+      <h3>Méthode et outils</h3>
+      <p>Feedly, Google Alerts, LinkedIn, Inoreader, Telegram, Talkwalker Alerts.</p>
+    </div>
+  </div>
+  <a href="assets/docs/veille_svelte_solid.pdf" class="btn btn--line" download>Voir mes Articles</a>
+  <!-- Ajoute tes synthèses / articles : copie un <li> ci-dessus -->
+</section>
+
+<!-- ============ CONTACT ============
+     Le formulaire est géré par js/main.js (section 5) avec EmailJS.
+     Ton mail et ton numéro n'apparaissent nulle part dans le code ;
+     réglages dans js/config.js. -->
+<section class="section reveal" id="contact">
+  <h2>Contact</h2>
+  <form class="form" id="contactForm" novalidate>
+    <label>Nom<input type="text" name="nom" required autocomplete="name"></label>
+    <label>Adresse e-mail<input type="email" name="email" required autocomplete="email"></label>
+    <label>Message<textarea name="message" rows="5" required></textarea></label>
+    <!-- Anti-spam : champ invisible, les robots le remplissent -->
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit" class="btn btn--solid">Envoyer le message</button>
+    <p class="form__status" id="formStatus" role="status"></p>
+  </form>
+</section>
+
+</main>
+
+<footer class="footer">© <span id="year"></span> Douho William — BTS SIO SLAM</footer>
+
+<!-- EmailJS : bibliothèque d'envoi de mails depuis le navigateur -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- Réglages du formulaire (token, destinataire) puis script principal -->
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
